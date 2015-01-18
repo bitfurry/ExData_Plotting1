@@ -1,0 +1,10 @@
+data <- read.delim("household_power_consumption.txt",header = T,sep = ";")
+data$Date <- as.Date(data$Date ,"%d/%m/%Y")
+ans <- rbind(data[data$Date == as.Date("2007-02-01"),],data[data$Date == as.Date("2007-02-02"),])
+png("plot3.png")
+plot(as.numeric(ans$Sub_metering_1),type =  "l",ylab = "Energy sub meetin",lwd = "1")
+points(as.numeric(ans$Sub_metering_2),col = "red",type = "l" ,lwd = 1)
+points(as.numeric(ans$Sub_metering_3),col = "blue",type = "l" ,lwd = 1)
+legend('topright', c("Sub_metering_1","Sub_metering_2","Sub_metering_1"),lty=1, col=c('black','red', 'blue'), bty='n', cex=1)
+
+dev.off()
